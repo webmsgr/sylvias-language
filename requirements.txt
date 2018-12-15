@@ -1,11 +1,2 @@
 shlex
-if
-you
-are
-reading
-this
-then
-you
-get
-a
-cookie
+if you are reading this then you get a cookie
