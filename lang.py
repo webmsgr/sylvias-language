@@ -38,17 +38,17 @@ def parseSingle(d,context):
         if token[0] == "<":
             var = token[1:]
             if var in vars:
-                tktmp[c+1] = vars[var]
+                #print(c)
+                tktmp[c] = vars[var]
+                #print(tktmp)
             else:
                 error("Varable not found ({})".format(var))
-                return vars
+                return
+        c += 1
     tokens = tktmp
     if not tokens[0] in commands:
         error("Command not found ({})".format(tokens[0]))
-        return vars
-
-
-        c += 1
+        return
 
     command = commands[tokens[0]]
     if command["args"] > 0:
