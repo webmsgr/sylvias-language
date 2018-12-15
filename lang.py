@@ -23,7 +23,10 @@ def cprint(data):
 
 
 def error(message):
-    print("===== ERROR =====\n"+message)
+    print(" ERROR ".center("=",10)
+    print()
+    print(message)
+    print("".center("=",10))
     if not quellErrors:
         sys.exit(1)
 
