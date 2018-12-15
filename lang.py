@@ -24,7 +24,6 @@ def cprint(data):
 
 def error(message):
     print(" ERROR ".center(10,"="))
-    print()
     print(message)
     print("".center(10,"="))
     if not quellErrors:
