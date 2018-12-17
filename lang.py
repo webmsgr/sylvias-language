@@ -21,6 +21,14 @@ def cprint(data):
     print(listtostr(data))
     return ""
 
+def importFunc(name):
+    try:
+        imported = __import__(name)
+    except ImportError:
+        error("Import Failed")
+    imported.makeCommands(addCommand)
+
+
 
 def error(message):
     print(" ERROR ".center(11,"="))
@@ -68,11 +76,15 @@ def parseSingle(d,context):
             c = command["func"]()
     return c
 
-commands = {
-    "print":{"func":cprint,"args":1,"passcontext":False},
-    "invar":{"func":set,"args":1,"passcontext":True},
-    "static":{"func":static,"args":1,"passcontext":False}
-}
+commands = {}
+def addCommand(name,func,args,passcontext):
+    commands[name] = {"func":func,"args":args,"passcontext":passcontext}
+# Commands
+addCommand("print",cprint,1,False)
+addCommand("invar",set,1,True)
+addCommand("static",static,1,False)
+importFunc("input_command")
+
 if __name__ == "__main__":
     q = True
     c = ""
