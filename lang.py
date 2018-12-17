@@ -52,6 +52,8 @@ def parseSingle(d,context):
             else:
                 error("Varable not found ({})".format(var))
                 return
+        if token == "$const":
+            tokens[c] = context
         c += 1
     tokens = tktmp
     if not tokens[0] in commands:
@@ -75,7 +77,8 @@ def parseSingle(d,context):
         else:
             c = command["func"]()
     return c
-
+def concat(args):
+    return listtostr(args)
 commands = {}
 def addCommand(name,func,args,passcontext):
     commands[name] = {"func":func,"args":args,"passcontext":passcontext}
@@ -83,6 +86,7 @@ def addCommand(name,func,args,passcontext):
 addCommand("print",cprint,1,False)
 addCommand("invar",set,1,True)
 addCommand("static",static,1,False)
+addCommand("concat",concat,2,False)
 importFunc("input_command")
 
 if __name__ == "__main__":
