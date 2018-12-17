@@ -7,7 +7,7 @@ After every command, a special variable called context is set. This can be auto 
 
 # Commands
 
-See (wiki)[https://github.com/webmsgr/sylvias-language/wiki/Documentation]
+See https://github.com/webmsgr/sylvias-language/wiki/Documentation
 
 # Example code
 
