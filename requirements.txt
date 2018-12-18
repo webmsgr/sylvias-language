@@ -1,2 +1,3 @@
+requests
 if you are reading this then you get a cookie
 FAKECTF{COOK13-MON5T3R-15-H4PPY-TH4T-YOU-GOT-COOK135}
