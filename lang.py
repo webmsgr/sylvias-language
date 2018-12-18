@@ -2,6 +2,8 @@
 
 vars = {}
 
+line = 0
+
 quellErrors = True
 def listtostr(list):
     o = ""
@@ -77,16 +79,46 @@ def parseSingle(d,context):
         else:
             c = command["func"]()
     return c
+def parsemultiple(toparse):
+    global line
+    line = 0
+    c = ""
+    while True:
+        try:
+            #print("toparse[{}] = {}".format(line,toparse[line]))
+            c = parseSingle(toparse[line],c)
+        except IndexError:
+            #error(line)
+            break
+        line = line + 1
+        if line <= -1:
+            break
+
 def concat(args):
     return listtostr(args)
+def jump(args):
+    global line
+    #print("setting line to {}".format(int(args[0]) - 2))
+    line = int(args[0]) - 2
 commands = {}
 def addCommand(name,func,args,passcontext):
     commands[name] = {"func":func,"args":args,"passcontext":passcontext}
+def exit():
+    global line
+    line = -2
+def parsefile(name):
+    with open(name) as f:
+        data = f.read()
+        f.close()
+    data = data.split("\n")
+    parsemultiple(data)
 # Commands
 addCommand("print",cprint,1,False)
+addCommand("jump",jump,1,False)
 addCommand("invar",set,1,True)
 addCommand("static",static,1,False)
 addCommand("concat",concat,2,False)
+addCommand("exit",exit,0,False)
 importFunc("input_command")
 
 if __name__ == "__main__":
