@@ -119,6 +119,7 @@ def imprt(args):
     importfunc(arg)
 # Commands
 addCommand("print",cprint,1,False)
+addCommand("import",imprt,1,False)
 addCommand("jump",jump,1,False)
 addCommand("invar",set,1,True)
 addCommand("static",static,1,False)
