@@ -114,6 +114,9 @@ def parsefile(name):
         f.close()
     data = data.split("\n")
     parsemultiple(data)
+def imprt(args):
+    arg = args[0]
+    importfunc(arg)
 # Commands
 addCommand("print",cprint,1,False)
 addCommand("jump",jump,1,False)
