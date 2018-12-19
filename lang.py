@@ -10,7 +10,8 @@ def listtostr(list):
     for item in list:
         o += item
     return o
-import shlex,sys
+
+import shlex,sys,os
 
 def set(var,context):
     vars[var[0]] = context
@@ -109,6 +110,7 @@ def exit():
 def parsefile(name):
     with open(name) as f:
         data = f.read()
+        #print(data)
         f.close()
     data = data.split("\n")
     parsemultiple(data)
@@ -122,6 +124,14 @@ addCommand("exit",exit,0,False)
 importFunc("input_command")
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        if os.path.isfile(sys.argv[1]):
+            parsefile(sys.argv[1])
+        else:
+            print("file does not exist")
+            sys.exit(1)
+        sys.exit(0)
+
     q = True
     c = ""
     print("Sylvia's Programming Languge Shell")
